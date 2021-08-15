@@ -5,7 +5,6 @@ exports.index = function (req,res){
     Libro.get(function(err,libros){
 	
 	if(err){
-		
 		res.json({
 			status:"error",
 			message:err
