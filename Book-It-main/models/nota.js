@@ -1,6 +1,6 @@
 mongoose = require('mongoose');
 
-var esquemaLibro = mongoose.Schema({
+var esquemaNota = mongoose.Schema({
 
 
     notaId:{

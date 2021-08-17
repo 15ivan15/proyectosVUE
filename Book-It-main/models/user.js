@@ -2,37 +2,33 @@ mongoose = require('mongoose');
 
 var esquemaUser = mongoose.Schema({
 
-    userId:{
+    name: {
         type: String,
-        required: true
+        require: true
     },
 
-    nombres: {
+    lastname: {
         type: String,
-        required: true
+        require: true
     },
 
-    apellidos: {
+    usser: {
         type: String,
-        required: true
+        require: true      
     },
 
-    usuario: {
+    email: {
         type: String,
-        required: true        
-    },
-
-    correo: {
-        type: String
+        require: true
     },
 
     password: {
         type: String,
-        required: true
+        require: true
     },
 
     books: [{
-        type: String
+
     }]
 
 });

@@ -1,4 +1,4 @@
-let rutas = require('express').Router();;
+let rutas = require('express').Router();
 rutas.get('/',function(req,res){
 	res.json({
 		status: 'api funcionando',
@@ -6,21 +6,21 @@ rutas.get('/',function(req,res){
 	});
 });
 
-var controladorLibro = require('../controladores/libro');
-var controladorNota = require('../controladores/nota');
-var controladorUser = require('../controladores/user');
+var controladorLibro = require('../controllers/libro');
+var controladorNota = require('../controllers/nota');
+var controladorUser = require('../controllers/user');
 
 rutas.route('/libro')
-.get(controladorLibro.index)
-.post(controladorLibro.new);
+    .get(controladorLibro.index)
+    .post(controladorLibro.new);
 
 rutas.route('/nota')
-.get(controladorNota.index)
-.post(controladorNota.new);
+    .get(controladorNota.index)
+    .post(controladorNota.new);
 
 rutas.route('/user')
-.get(controladorUser.index)
-.post(controladorUser.new);
+    .get(controladorUser.index)
+    .post(controladorUser.new);
 
 rutas.route('/libro/:libro_id')
     .get(controladorLibro.view)

@@ -9,7 +9,7 @@ let mongoose = require('mongoose');
 let app = express();
 
 
-let apiRoutes = require("./rutas/rutas");
+let apiRoutes = require("./routes/rutas");
 
 let dataBaseConfig = require('./basededatos/db');
 

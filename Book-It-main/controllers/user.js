@@ -1,11 +1,8 @@
-User = require('../modelos/user');
+User = require('../models/user');
 
 exports.index = function (req,res){
-	
     User.get(function(err,users){
-	
 	if(err){
-		
 		res.json({
 			status:"error",
 			message:err
@@ -27,10 +24,9 @@ exports.index = function (req,res){
 exports.new = function (req, res) {
 	
     var user = new User();
-    user.userId = req.body.userId;
-    user.nombres = req.body.nombres;
-    user.apellidos = req.body.apellidos;
-    user.usuario = req.body.usuario;
+    user.name = req.body.name;
+    user.lastname = req.body.lastname;
+    user.usser = req.body.usser;
     user.password = req.body.password;
     user.books = req.body.books;
 // save the user and check for errors
@@ -40,7 +36,7 @@ exports.new = function (req, res) {
             res.json(err);
         else
             res.json({
-                message: 'nuevo user creado!',
+                message: 'Usuario creado correctamente!',
                 data: user
             });
     });
@@ -62,10 +58,9 @@ exports.update = function (req, res) {
     User.findById(req.params.user_id, function (err, user) {
         if (err)
             res.send(err);
-        user.userId = req.body.userId;
-        user.nombres = req.body.nombres;
-        user.apellidos = req.body.apellidos;
-        user.usuario = req.body.usuario;
+        user.name = req.body.name;
+        user.lastname = req.body.lastname;
+        user.usser = req.body.usser;
         user.password = req.body.password;
         user.books = req.body.books;
 // save the users and check for errors
@@ -75,7 +70,7 @@ exports.update = function (req, res) {
             res.json(err);
         else
             res.json({
-                message: 'creado nuevo user!',
+                message: 'Usuario actualizado correctamente!',
                 data: user
             });
     });
@@ -83,7 +78,7 @@ exports.update = function (req, res) {
 };
 // Handle delete luser
 exports.delete = function (req, res) {
-    LUser.remove({
+    User.remove({
         _id: req.params.user_id
     }, function (err, user) {
         if (err)

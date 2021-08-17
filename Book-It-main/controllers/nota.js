@@ -1,4 +1,4 @@
-Nota = require('../modelos/nota');
+Nota = require('../models/nota');
 
 exports.index = function (req,res){
 	
@@ -27,7 +27,7 @@ exports.index = function (req,res){
 exports.new = function (req, res) {
 	
     var nota = new Nota();
-    nota.title = req.body.notaId
+    nota.title = req.body.notaId;
     nota.userId = req.body.userId;
     nota.bookId = req.body.bookId;
     nota.title = req.body.title;

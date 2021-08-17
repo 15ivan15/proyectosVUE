@@ -1,4 +1,4 @@
-Libro = require('../modelos/libro');
+Libro = require('../models/libro');
 
 exports.index = function (req,res){
 	
