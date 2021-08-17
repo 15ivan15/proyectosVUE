@@ -1,38 +1,5 @@
 <template>
   <div class="inicio">
-    <!-- <div>
-      <b-carousel
-        id="carousel-1"
-        v-model="slide"
-        :interval="4000"
-        controls
-        indicators
-        background="#ababab"
-        img-width="1024"
-        img-height="480"
-        style="text-shadow: 1px 1px 2px #333"
-      >
-        <b-carousel-slide caption="Book-It">
-          <template #img>
-            <img
-              class="d-block img-fluid w-100"
-              width="1024"
-              height="480"
-              src="https://images5.alphacoders.com/394/394862.jpg"
-              alt="image slot"
-            />
-          </template>
-        </b-carousel-slide>
-        <b-carousel-slide
-          caption="Second Slide"
-          img-src="https://picsum.photos/1024/480/?image=12"
-        ></b-carousel-slide>
-        <b-carousel-slide
-          caption="Third Slide"
-          img-src="https://picsum.photos/1024/480/?image=22"
-        ></b-carousel-slide>
-      </b-carousel>
-    </div> -->
     <div>
       <b-carousel
         id="carousel-1"

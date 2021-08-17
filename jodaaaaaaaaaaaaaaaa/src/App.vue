@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div>
-      <b-navbar toggleable="lg" type="light" variant="info">
+      <b-navbar toggleable="lg" type="dark" variant="info">
         <b-navbar-brand>
           <img src="../src/assets/logo1.png" :to="{ name: 'inicio'}"/>
         </b-navbar-brand>
@@ -18,7 +18,7 @@
                 <a style="font-size:120%;">Usuario</a>
               </template>
               <b-dropdown-item :to="{ name: 'login'}">Ingresar</b-dropdown-item>
-              <b-dropdown-item href="#">Registrarse</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'register'}">Registrarse</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
