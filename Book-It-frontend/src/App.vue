@@ -20,11 +20,11 @@
               <b-dropdown-item :to="{ name: 'login'}">Ingresar</b-dropdown-item>
               <b-dropdown-item :to="{ name: 'register'}">Registrarse</b-dropdown-item>
             </b-nav-item-dropdown>
+            <b-nav-item style="font-size:120%;" :to="{ name: 'about'}">About</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
     </div>
-
     <router-view />
   </div>
 </template>
