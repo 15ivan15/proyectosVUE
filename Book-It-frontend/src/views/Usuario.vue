@@ -32,4 +32,15 @@
 </template>
 
 <script>
+export default{
+  name: 'Usuario',
+  data: function(){
+    return{
+      usser:"none",
+    }
+  },
+  created: function(){
+      this.usser = this.$route.params.usser
+  }
+}
 </script>
