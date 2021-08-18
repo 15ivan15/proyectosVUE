@@ -26,6 +26,7 @@ const usuariosPost = (req, res = response) => {
 const usuariosPut = (req, res = response) => {
 
     const { id } = req.params;
+    const { _id, password, email, ...data } = req.body;
 
     res.json({
         msg: 'put API - usuariosPut',
