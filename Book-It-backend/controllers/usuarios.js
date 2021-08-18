@@ -2,9 +2,21 @@ const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users')
 
-const usuariosGet = (req = request, res = response) => {
+const usuariosGet = async (req = request, res = response) => {
+    const { usser, password } = req.body;
+    const user = await User.findOne({ usser })
 
-    res.json({ msg: 'get API - controlador', });
+    const validPassword = bcrypt.compareSync(password, user.password);
+    if (!validPassword) {
+        return res.status(400).json({
+            msg: 'Usuario / Contraseña incorrecto'
+        })
+    }
+    res.json({
+        message: 'Usuario encontrado correctamente!',
+        data: user
+    });
+
 }
 
 const usuariosPost = (req, res = response) => {
@@ -25,16 +37,15 @@ const usuariosPost = (req, res = response) => {
 
 const usuariosPut = async (req, res = response) => {
 
-    const { usser } = req.params; 
-    const {password, email, ...data } = req.body;
+    const { usser } = req.params;
+    const { password, email, ...data } = req.body;
 
     if (password) {
         const salt = bcrypt.genSaltSync();
         data.password = bcrypt.hashSync(password, salt);
     }
 
-    const user = await User.findOneAndUpdate({usser}, data)
-    console.log(user)
+    const user = await User.findOneAndUpdate({ usser }, data)
 
     res.json({
         message: 'Usuario actualizado correctamente!',
@@ -48,9 +59,14 @@ const usuariosPatch = (req, res = response) => {
     });
 }
 
-const usuariosDelete = (req, res = response) => {
+const usuariosDelete = async (req, res = response) => {
+    const { usser } = req.params;
+    console.log(req.params)
+    const user = await User.findOneAndUpdate({ usser }, { state: false });
+
     res.json({
-        msg: 'delete API - usuariosDelete'
+        message: 'Usuario eliminado correctamente!',
+        data: user
     });
 }
 

@@ -2,6 +2,7 @@
 const { Router } = require('express');
 const {check} = require('express-validator');
 const {validateData} = require('../middlewares/validate-data')
+const {validateJWT} = require('../middlewares/validate-jwt')
 const {emailExists} = require('../helpers/req-validators')
 const {usserExists} = require('../helpers/req-validators')
 const {usserNotExists} = require('../helpers/req-validators')
@@ -14,7 +15,12 @@ const { usuariosGet,
 
 const router = Router();
 
-router.get('/', usuariosGet );
+router.get('/', [
+    check('usser').custom(usserNotExists),
+    check('password', 'La contraseña debe ser de mínimo 6 dígitos').isLength({ min: 6}),
+    validateData
+],
+usuariosGet );
 
 router.put('/:usser', [
     check('usser').custom(usserNotExists),
@@ -34,7 +40,11 @@ router.post('/', [
 ],
 usuariosPost );
 
-router.delete('/', usuariosDelete );
+router.delete('/:usser',[
+    validateJWT,
+    validateData
+],
+ usuariosDelete );
 
 router.patch('/', usuariosPatch );
 
