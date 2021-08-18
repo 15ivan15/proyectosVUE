@@ -13,7 +13,15 @@ const usserExists = async(usser='')=>{
         throw new Error(`El usuario ${usser} ya se encuentra registrado`)
     }
 }
+
+const usserNotExists = async(usser='')=>{
+    const user = await User.findOne({usser});
+    if(!user){
+        throw new Error(`El usuario ${usser} no se encuentra registrado`)
+    }
+}
 module.exports={
     emailExists,
-    usserExists
+    usserExists,
+    usserNotExists
 }
