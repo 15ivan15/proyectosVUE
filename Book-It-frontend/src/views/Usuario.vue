@@ -13,34 +13,51 @@
           <dl>
             <br />
             <dt>Nombre completo:</dt>
-            <dd>A description list is perfect for defining terms.</dd>
+            <dd>{{info.name}} {{info.lastname}}</dd>
             <dt>Usuario:</dt>
             <dd>
-              Vestibulum id ligula porta felis euismod semper eget lacinia odio
-              sem nec elit.
+              {{info.usser}}
             </dd>
             <dt>Correo electrónico:</dt>
-            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+            <dd>{{info.email}}</dd>
           </dl>
-          <br><br>
+          <br /><br />
           <b-button pill variant="danger">Eliminar cuenta</b-button>
         </div>
         <div class="col-md-7"></div>
       </div>
     </div>
+    <router-view />
   </div>
 </template>
 
 <script>
-export default{
-  name: 'Usuario',
-  data: function(){
-    return{
-      usser:"none",
-    }
+import axios from "axios";
+export default {
+  name: "Usuario",
+  data: function () {
+    return {
+      user_: {
+        usser: "none",
+      },
+      info: "",
+    };
   },
-  created: function(){
-      this.usser = this.$route.params.usser
-  }
-}
+  created: function () {
+    this.user_.usser = this.$route.params.usser;
+    var self = this;
+    axios
+      .get("http://localhost:3000/api/usuarios/" + self.user_.usser, {
+        headers: {},
+      })
+      .then((result) => {
+        this.info = result.data.data;
+        console.log(this.info);
+      })
+      .catch((error) => {
+        if (error.response.status == 404)
+          alert("No se ha podido crear al usuario");
+      });
+  },
+};
 </script>

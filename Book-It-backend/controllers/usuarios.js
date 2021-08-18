@@ -2,7 +2,7 @@ const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users')
 
-const usuariosGet = async (req = request, res = response) => {
+/* const usuariosGet = async (req = request, res = response) => {
     const { usser, password } = req.body;
     const user = await User.findOne({ usser })
 
@@ -12,6 +12,22 @@ const usuariosGet = async (req = request, res = response) => {
             msg: 'Usuario / Contraseña incorrecto'
         })
     }
+    res.json({
+        message: 'Usuario encontrado correctamente!',
+        data: user
+    });
+
+} */
+const usuariosGet = async (req = request, res = response) => {
+    const { usser } = req.params;
+    const user = await User.findOne({ usser })
+
+    /* const validPassword = bcrypt.compareSync(password, user.password);
+    if (!validPassword) {
+        return res.status(400).json({
+            msg: 'Usuario / Contraseña incorrecto'
+        })
+    } */
     res.json({
         message: 'Usuario encontrado correctamente!',
         data: user

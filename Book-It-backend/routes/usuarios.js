@@ -15,9 +15,9 @@ const { usuariosGet,
 
 const router = Router();
 
-router.get('/', [
+router.get('/:usser', [
     check('usser').custom(usserNotExists),
-    check('password', 'La contraseña debe ser de mínimo 6 dígitos').isLength({ min: 6}),
+    /* check('password', 'La contraseña debe ser de mínimo 6 dígitos').isLength({ min: 6}), */
     validateData
 ],
 usuariosGet );
