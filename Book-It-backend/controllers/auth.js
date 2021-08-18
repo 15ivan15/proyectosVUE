@@ -19,10 +19,9 @@ const login = async (req, res) => {
             })
         }
         const token = await generatorJWT(user._id);
-        console.log(token)
 
         res.json({
-            message: `su token es ${token}`,
+            message: token,
             data: user
         })
     } catch (err) {

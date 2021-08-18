@@ -33,7 +33,9 @@
 export default {
   name: "App",
   data() {
-    return {};
+    return {
+      is_auth: localStorage.getItem('isAuth') || false
+    };
   },
   methods: {
     Inicio: function () {

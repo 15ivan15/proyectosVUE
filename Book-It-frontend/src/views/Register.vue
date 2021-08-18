@@ -108,7 +108,10 @@
                 :show="showDismissibleAlert"
                 @dismissed="showDismissibleAlert = false"
               >
-                {{info}}
+                {{ info }}
+                <b-button variant="link" :to="{ name: 'login' }"
+                  >Aceptar</b-button
+                >
               </b-alert>
             </div>
             <div class="col-md-4"></div>

@@ -48,7 +48,6 @@
                       @click="showDismissibleAlert = true"
                       v-on:click="login"
                       variant="info"
-                      :to="{ name: 'usuario'}"
                     >
                       Iniciar
                     </button>
@@ -69,7 +68,8 @@
                 :show="showDismissibleAlert"
                 @dismissed="showDismissibleAlert = false"
               >
-                {{info}}
+                {{ info }}
+                <label variant="link" :to="{ name: 'usuario'}">Aceptar</label>
               </b-alert>
             </div>
             <div class="col-md-4"></div>
@@ -103,7 +103,10 @@ export default {
         })
         .then((result) => {
           this.info = result.data.message;
-          alert(this.info)
+          this.user_.usser=result.data.data.usser;
+          let usser = this.user_.usser;
+          let token = this.info;
+          this.$router.push({name: 'usuario',params:{usser}, headers:{token}})
         })
         .catch((error) => {
           if (error.response.status == 404)
