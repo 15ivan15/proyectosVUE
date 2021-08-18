@@ -20,16 +20,16 @@
                   </h1>
                   <form role="form">
                     <div class="form-group">
-                      <label for="email" style="font-size:150%">  Email address </label>
+                      <label for="usser" style="font-size:150%">  Usuario </label>
                       <input
-                        type="email"
+                        type="text"
                         class="form-control"
-                        id="email"
-                        v-model="user.email"
+                        id="usser"
+                        v-model="user.usser"
                       />
                     </div>
                     <div class="form-group">
-                      <label for="password" style="font-size:150%"> Password </label>
+                      <label for="password" style="font-size:150%"> Contraseña </label>
                       <input
                         type="password"
                         class="form-control"
@@ -62,7 +62,7 @@ export default {
   data: function (){
     return {
       user:{
-        email: "",
+        usser: "",
         pass: ""
       },
     };

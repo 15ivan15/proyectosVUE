@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group">
                       <label for="email" style="font-size: 150%">
-                        Email address
+                        Correo Electrónico
                       </label>
                       <input
                         type="email"
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group">
                       <label for="password" style="font-size: 150%">
-                        Password
+                        Contraseña
                       </label>
                       <input
                         type="password"
@@ -141,11 +141,12 @@ export default {
     enviar: function () {
       var self = this;
       axios
-        .post("http://localhost:8080/api/user/", self.user_, {
+        .post("http://localhost:3000/api/usuarios/", self.user_, {
           headers: {},
         })
         .then((result) => {
-          this.info = result.data.message;
+          this.info = result.response;
+          
         })
         .catch((error) => {
           if (error.response.status == 404)
