@@ -13,16 +13,18 @@
           <dl>
             <br />
             <dt>Nombre completo:</dt>
-            <dd>{{info.name}} {{info.lastname}}</dd>
+            <dd>{{ info.name }} {{ info.lastname }}</dd>
             <dt>Usuario:</dt>
             <dd>
-              {{info.usser}}
+              {{ info.usser }}
             </dd>
             <dt>Correo electrónico:</dt>
-            <dd>{{info.email}}</dd>
+            <dd>{{ info.email }}</dd>
           </dl>
-          <br /><br />
+          <br />
           <b-button pill variant="danger">Eliminar cuenta</b-button>
+          <br /><br />
+          <b-button pill variant="info">Actualizar datos</b-button>
         </div>
         <div class="col-md-7"></div>
       </div>
