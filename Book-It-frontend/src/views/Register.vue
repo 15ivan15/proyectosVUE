@@ -145,8 +145,7 @@ export default {
           headers: {},
         })
         .then((result) => {
-          this.info = result.response;
-          
+          this.info = result.data.message;
         })
         .catch((error) => {
           if (error.response.status == 404)
