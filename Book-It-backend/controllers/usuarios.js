@@ -77,9 +77,8 @@ const usuariosPatch = (req, res = response) => {
 
 const usuariosDelete = async (req, res = response) => {
     const { usser, password } = req.params;
-    console.log(req.params)
     const user = await User.findOneAndUpdate({ usser }, { state: false });
-    
+
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
         return res.json({

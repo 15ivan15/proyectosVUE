@@ -5,15 +5,16 @@ const User = require('../models/users')
 
 const validateJWT = async (req, res, next) => {
     const token = req.header('token');
+    console.log(token)
     if (!token) {
         return res.status(401).json({
             msg: 'La petición require un token'
         })
     }
     try {
-        const { userId } = jwt.verify(token, config.get('SECRETORPRIVATEKEY'));
-        const user = await User.findById(userId);
-        console.log(user)
+        const { _id } = jwt.verify(token, config.get('SECRETORPRIVATEKEY'));
+        const user = await User.findById(_id);
+
         if (!user && !user.state) {
             return res.status(401).json({
                 msg: 'Token no es válido'

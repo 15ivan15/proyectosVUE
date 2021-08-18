@@ -8,7 +8,7 @@ const login = async (req, res) => {
         const user = await User.findOne({ usser, state: true });
         if (!user) {
             return res.json({
-                message: 'Usuario / Contraseña incorrecto'
+                message: 'Usuario no existe'
             })
         }
 
@@ -25,7 +25,6 @@ const login = async (req, res) => {
             data: user
         })
     } catch (err) {
-        console.log(err)
         res.status(500).json({
             message: 'Error interno'
         })
