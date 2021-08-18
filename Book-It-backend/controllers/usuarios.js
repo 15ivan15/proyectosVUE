@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/users')
 
 const usuariosGet = (req = request, res = response) => {
-    
+
     res.json({ msg: 'get API - controlador', });
 }
 
@@ -25,7 +25,7 @@ const usuariosPost = (req, res = response) => {
 
 const usuariosPut = async (req, res = response) => {
 
-    const { usser } = req.params;
+    const { usser } = req.params; 
     const {password, email, ...data } = req.body;
 
     if (password) {
@@ -33,8 +33,8 @@ const usuariosPut = async (req, res = response) => {
         data.password = bcrypt.hashSync(password, salt);
     }
 
-    const user = await User.findOneAndUpdate(usser, data)
-    console.log(user._id)
+    const user = await User.findOneAndUpdate({usser}, data)
+    console.log(user)
 
     res.json({
         message: 'Usuario actualizado correctamente!',

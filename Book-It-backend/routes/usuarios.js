@@ -18,6 +18,8 @@ router.get('/', usuariosGet );
 
 router.put('/:usser', [
     check('usser').custom(usserNotExists),
+    check('email', 'El correo no es valido').isEmail(),
+    check('password', 'La contraseña debe ser de mínimo 6 dígitos').isLength({ min: 6}),
     validateData
 ],
 usuariosPut );
