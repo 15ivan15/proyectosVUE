@@ -42,6 +42,7 @@
                   class="btn btn-primary"
                   v-on:click="elimina"
                   variant="danger"
+                  @click="seguir()"
                 >
                   Confirmar
                 </button>
@@ -62,6 +63,7 @@
 
 <script>
 import axios from "axios";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "Delete",
   data: function () {
@@ -73,14 +75,18 @@ export default {
       info: "",
     };
   },
+  computed: {
+    ...mapState(["is_auth"]),
+  },
   methods: {
-    Inicio: function () {
+    ...mapMutations(["seguir", "salir"]),
+   /*  Inicio: function () {
       if (this.$route.name != "Inicio") {
         this.is_auth = false;
         localStorage.removeItem("token");
         this.$router.push({ name: "Inicio" });
       }
-    },
+    }, */
     elimina: function () {
       var self = this;
       let token = localStorage.getItem("token");

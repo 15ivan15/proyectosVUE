@@ -35,20 +35,34 @@ const usuariosGet = async (req = request, res = response) => {
 
 }
 
-const usuariosPost = (req, res = response) => {
+const usuariosPost = async (req, res = response) => {
 
     const { name, lastname, usser, email, password } = req.body;
     const user = new User({ name, lastname, usser, email, password });
+    const user1 = await User.findOne({ usser })
+    const user2 = await User.findOne({ email })
 
+    if (user1) {
+        res.json({
+            message: `El usuario ${usser} ya existe`
+        });
+    } else if (user2) {
+        res.json({
+            message: `El correo ${email} ya existe`
+        });
+    } else {
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(password, salt);
+
+        user.save();
+
+        res.json({
+            message: 'Usuario creado correctamente!',
+            data: user
+        });
+    }
     //cifrado de la contraseña
-    const salt = bcrypt.genSaltSync();
-    user.password = bcrypt.hashSync(password, salt);
 
-    user.save();
-    res.json({
-        message: 'Usuario creado correctamente!',
-        data: user
-    });
 }
 
 const usuariosPut = async (req, res = response) => {
@@ -79,7 +93,7 @@ const usuariosDelete = async (req, res = response) => {
     const { usser, password } = req.params;
     console.log(password)
 
-    const user = await User.findOneAndUpdate({ usser }, {state: false});
+    const user = await User.findOneAndUpdate({ usser }, { state: false });
 
     const validPassword = bcrypt.compareSync(password, user.password);
 

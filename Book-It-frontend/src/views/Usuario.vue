@@ -39,6 +39,7 @@
 
 <script>
 import axios from "axios";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "Usuario",
   data: function () {
@@ -48,6 +49,12 @@ export default {
       },
       info: "",
     };
+  },
+  computed: {
+    ...mapState(["is_auth"]),
+  },
+  methods: {
+    ...mapMutations(["seguir", "salir"]),
   },
   created: function () {
     this.user_.usser = this.$route.params.usser;

@@ -45,9 +45,9 @@
                     <button
                       type="button"
                       class="btn btn-primary"
-                      @click="showDismissibleAlert = true"
                       v-on:click="login"
                       variant="info"
+                      @click="salir()"
                     >
                       Iniciar
                     </button>
@@ -69,6 +69,13 @@
                 @dismissed="showDismissibleAlert = false"
               >
                 {{ info }}
+
+                <b-button
+                  variant="link"
+                  @click="seguir()"
+                  :to="{ name: 'inicio' }"
+                  >Aceptar</b-button
+                >
               </b-alert>
             </div>
             <div class="col-md-4"></div>
@@ -80,6 +87,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 import axios from "axios";
 export default {
   name: "Login",
@@ -93,8 +101,13 @@ export default {
       showDismissibleAlert: false,
     };
   },
+  computed: {
+    ...mapState(["is_auth"]),
+  },
   methods: {
+    ...mapMutations(["seguir", "salir"]),
     login: function () {
+      this.showDismissibleAlert = true;
       var self = this;
       axios
         .post("http://localhost:3000/api/auth/login", self.user_, {
@@ -102,11 +115,15 @@ export default {
         })
         .then((result) => {
           this.info = result.data.message;
-          this.user_.usser=result.data.data.usser;
+          this.user_.usser = result.data.data.usser;
           let usser = this.user_.usser;
           let token = this.info;
-          localStorage.setItem('token', token)
-          this.$router.push({name: 'usuario',params:{usser}, headers:{token}})
+          localStorage.setItem("token", token);
+          this.$router.push({
+            name: "usuario",
+            params: { usser },
+            headers: { token },
+          });
         })
         .catch((error) => {
           if (error.response.status == 404)

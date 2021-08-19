@@ -25,7 +25,7 @@ const login = async (req, res) => {
             data: user
         })
     } catch (err) {
-        res.status(500).json({
+        res.json({
             message: 'Error interno'
         })
     }

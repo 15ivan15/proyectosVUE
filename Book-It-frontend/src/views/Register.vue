@@ -149,6 +149,7 @@ export default {
         })
         .then((result) => {
           this.info = result.data.message;
+          console.log(result)
         })
         .catch((error) => {
           if (error.response.status == 404)

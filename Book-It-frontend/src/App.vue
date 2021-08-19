@@ -15,6 +15,7 @@
               v-if="!is_auth"
               style="font-size: 120%"
               v-on:click="Inicio()"
+              @click="seguir()"
               >Inicio</b-nav-item
             >
             <b-nav-item
@@ -30,14 +31,16 @@
               </template>
               <b-dropdown-item
                 v-if="!is_auth"
-                v-on:click="logIn()"
                 :to="{ name: 'login' }"
                 >Ingresar</b-dropdown-item
               >
               <b-dropdown-item v-if="!is_auth" :to="{ name: 'register' }"
                 >Registrarse</b-dropdown-item
               >
-              <b-dropdown-item v-if="is_auth" v-on:click="logOut()"
+              <b-dropdown-item
+                v-if="is_auth"
+                v-on:click="logOut()"
+                @click="seguir()"
                 >Cerrar Sesión</b-dropdown-item
               >
             </b-nav-item-dropdown>
@@ -53,17 +56,19 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "App",
   data() {
-    return {
-      is_auth: false,
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(["is_auth"]),
   },
   methods: {
+    ...mapMutations(["seguir", "salir"]),
     Inicio: function () {
       if (this.$route.name != "Inicio") {
-        this.is_auth = false;
         localStorage.removeItem("token");
         this.$router.push({ name: "Inicio" });
       }
@@ -84,15 +89,8 @@ export default {
       this.$router.push({ name: "Inicio" });
     },
     logOut: function () {
-      this.is_auth = false;
       localStorage.removeItem("user");
       localStorage.removeItem("token");
-      if (!self.is_auth) {
-        this.Inicio();
-      }
-    },
-    logIn: function () {
-      this.is_auth = true;
     },
   },
 };
