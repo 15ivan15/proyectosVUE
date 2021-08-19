@@ -35,9 +35,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue')
   },
   {
-    path: '/delete/:usser',
-    name: 'delete',
-    component: () => import(/* webpackChunkName: "delete" */ '../views/Delete.vue')
+    path: '/eliminar/:usser',
+    name: 'eliminar',
+    component: () => import(/* webpackChunkName: "eliminar" */ '../views/Eliminar.vue')
+  },
+  {
+    path: '/actualizar/:usser',
+    name: 'actualizar',
+    component: () => import(/* webpackChunkName: "actualizar" */ '../views/Actualizar.vue')
   }
 ]
 

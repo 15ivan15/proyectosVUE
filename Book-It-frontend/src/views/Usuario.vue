@@ -22,11 +22,13 @@
             <dd>{{ info.email }}</dd>
           </dl>
           <br />
-          <b-button pill variant="danger" :to="{ name: 'delete' }"
+          <b-button pill variant="danger" :to="{ name: 'eliminar' }"
             >Eliminar cuenta</b-button
           >
           <br /><br />
-          <b-button pill variant="info">Actualizar datos</b-button>
+          <b-button pill variant="info" :to="{ name: 'actualizar' }"
+            >Actualizar datos</b-button
+          >
         </div>
         <div class="col-md-7"></div>
       </div>
@@ -49,7 +51,7 @@ export default {
   },
   created: function () {
     this.user_.usser = this.$route.params.usser;
-    localStorage.setItem('user', this.user_.usser)
+    localStorage.setItem("user", this.user_.usser);
     var self = this;
     axios
       .get("http://localhost:3000/api/usuarios/" + self.user_.usser, {

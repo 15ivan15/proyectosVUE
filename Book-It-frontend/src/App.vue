@@ -58,28 +58,35 @@ export default {
   data() {
     return {
       is_auth: false,
-      usser: "",
     };
   },
   methods: {
     Inicio: function () {
       if (this.$route.name != "Inicio") {
         this.is_auth = false;
+        localStorage.removeItem("token");
         this.$router.push({ name: "Inicio" });
       }
     },
     Usuario: function () {
       if (this.$route.name != "Usuario") {
-        let usser = localStorage.getItem('user')
-        this.$router.push({ name: "usuario", params:{usser} });
+        let usser = localStorage.getItem("user");
+        let token = localStorage.getItem("token");
+        this.$router.push({
+          name: "usuario",
+          params: { usser },
+          headers: { token },
+        });
       }
     },
     beforeCreate: function () {
+      localStorage.removeItem("token");
       this.$router.push({ name: "Inicio" });
     },
     logOut: function () {
       this.is_auth = false;
-      localStorage.removeItem('user')
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       if (!self.is_auth) {
         this.Inicio();
       }
