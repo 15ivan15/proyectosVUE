@@ -68,15 +68,14 @@ const usuariosPost = async (req, res = response) => {
 const usuariosPut = async (req, res = response) => {
 
     const { usser } = req.params;
-    const { password, email, ...data } = req.body;
+    const {password, ...data } = req.body;
 
     if (password) {
         const salt = bcrypt.genSaltSync();
         data.password = bcrypt.hashSync(password, salt);
     }
-
     const user = await User.findOneAndUpdate({ usser }, data)
-
+    console.log(user)
     res.json({
         message: 'Usuario actualizado correctamente!',
         data: user
@@ -85,7 +84,7 @@ const usuariosPut = async (req, res = response) => {
 
 const usuariosPatch = (req, res = response) => {
     res.json({
-        msg: 'patch API - usuariosPatch'
+        message: 'patch API - usuariosPatch'
     });
 }
 

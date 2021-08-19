@@ -29,9 +29,7 @@
               <template #button-content>
                 <a style="font-size: 120%">Usuario</a>
               </template>
-              <b-dropdown-item
-                v-if="!is_auth"
-                :to="{ name: 'login' }"
+              <b-dropdown-item v-if="!is_auth" :to="{ name: 'login' }"
                 >Ingresar</b-dropdown-item
               >
               <b-dropdown-item v-if="!is_auth" :to="{ name: 'register' }"
@@ -41,6 +39,7 @@
                 v-if="is_auth"
                 v-on:click="logOut()"
                 @click="seguir()"
+                :to="{ name: 'inicio' }"
                 >Cerrar Sesión</b-dropdown-item
               >
             </b-nav-item-dropdown>

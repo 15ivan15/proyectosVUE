@@ -103,8 +103,7 @@ export default {
         .then((result) => {
           this.info = result.data.message;
           localStorage.removeItem("token");
-          localStorage.removeItem("isAuth");
-          
+          console.log(this.info)
           this.$router.push({ name: "inicio" });
           alert(this.info);
         })
