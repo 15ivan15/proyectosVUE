@@ -14,12 +14,6 @@ export default new Vuex.Store({
     salir(state) {
       state.is_auth = true
     },
-    actualiza(state, a) {
-      console.log(a)
-      if(a){
-        state.is_auth = false
-      }
-    }
   },
   actions: {
   },
